@@ -14,11 +14,13 @@
 
 ## English
 
-A sophisticated ZSH script for batch converting MP4 files to HEVC/H.265 format with optimal compression, thermal management, and comprehensive progress tracking.
+A sophisticated ZSH script for batch converting MP4 files to HEVC/H.265 format with optimal compression, thermal management, and comprehensive progress tracking. Videos are optimized for maximum Apple device compatibility and streaming performance.
 
 ### ✨ Features
 
 - **Efficient HEVC Encoding**: Converts MP4 files to HEVC/H.265 using FFmpeg with libx265
+- **Apple Device Optimization**: Uses hvc1 tag for maximum compatibility with Apple devices
+- **Streaming Optimization**: Applies faststart flag for immediate streaming capabilities
 - **Smart CPU Management**: Configurable CPU limits with optional cpulimit integration
 - **Thermal Protection**: Automatic pauses between conversions to prevent overheating
 - **Adaptive Presets**: Automatically adjusts encoding presets based on system load
@@ -131,11 +133,13 @@ chmod +x encoder-mp4-hevc.zsh
 
 ## Português (BR)
 
-Um script ZSH sofisticado para conversão em lote de arquivos MP4 para formato HEVC/H.265 com compressão otimizada, gerenciamento térmico e rastreamento abrangente de progresso.
+Um script ZSH sofisticado para conversão em lote de arquivos MP4 para formato HEVC/H.265 com compressão otimizada, gerenciamento térmico e rastreamento abrangente de progresso. Os vídeos são otimizados para máxima compatibilidade com dispositivos Apple e performance de streaming.
 
 ### ✨ Funcionalidades
 
 - **Codificação HEVC Eficiente**: Converte arquivos MP4 para HEVC/H.265 usando FFmpeg com libx265
+- **Otimização para Dispositivos Apple**: Usa tag hvc1 para máxima compatibilidade com dispositivos Apple
+- **Otimização para Streaming**: Aplica flag faststart para capacidades de streaming imediato
 - **Gerenciamento Inteligente de CPU**: Limites de CPU configuráveis com integração opcional do cpulimit
 - **Proteção Térmica**: Pausas automáticas entre conversões para prevenir superaquecimento
 - **Presets Adaptativos**: Ajusta automaticamente os presets de codificação baseado na carga do sistema
