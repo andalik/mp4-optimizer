@@ -628,7 +628,7 @@ display_file_analysis() {
             duration_display="${CURRENT_FILE_ANALYSIS[duration]}"
         fi
     fi
-    echo "   ${WHITE}⏱️  Duration:${NC} ${CYAN}$duration_display${NC}"
+    echo "   ${WHITE}⏱️ Duration:${NC} ${CYAN}$duration_display${NC}"
     
     echo ""
     
