@@ -57,11 +57,11 @@ sudo dnf install ffmpeg cpulimit
 1. Place the script in a directory containing MP4 files
 2. Make it executable:
    ```bash
-   chmod +x encoder-mp4-hevc.zsh
+   chmod +x mp4-optimizer.zsh
    ```
 3. Run the converter:
    ```bash
-   ./encoder-mp4-hevc.zsh
+   ./mp4-optimizer.zsh
    ```
 
 ### ⚙️ Configuration
@@ -72,6 +72,7 @@ Edit the configuration variables at the top of the script:
 |----------|---------|-------------|
 | `QUALITY_CRF` | 20 | Video quality (18-28, lower = better quality) |
 | `PRESET` | "medium" | Encoding speed preset |
+| `THREADS` | 0 | Number of threads (0 = auto-detect) |
 | `CPU_LIMIT` | 70 | Maximum CPU usage percentage |
 | `THERMAL_PAUSE` | 60 | Seconds to pause between conversions |
 | `USE_CPULIMIT` | true | Enable precise CPU control |
@@ -91,12 +92,12 @@ Edit the configuration variables at the top of the script:
 
 ```
 your-directory/
-├── encoder-mp4-hevc.zsh          # Main script
+├── mp4-optimizer.zsh             # Main script
 ├── video1.mp4                    # Original file
-├── video1_ffmpeg.mp4             # Converted HEVC file
+├── video1_optimized.mp4          # Converted HEVC file
 ├── video2.mp4                    # Another original
-├── video2_ffmpeg.mp4             # Another converted file
-└── encoder-mp4-hevc_logs/        # Error logs directory
+├── video2_optimized.mp4          # Another converted file
+└── mp4-optimizer-logs/           # Error logs directory
     ├── video1_error.log          # Individual error logs
     └── video2_error.log
 ```
@@ -114,7 +115,7 @@ sudo apt install ffmpeg  # Ubuntu/Debian
 
 **Permission denied**
 ```bash
-chmod +x encoder-mp4-hevc.zsh
+chmod +x mp4-optimizer.zsh
 ```
 
 **High CPU usage**
@@ -176,11 +177,11 @@ sudo dnf install ffmpeg cpulimit
 1. Coloque o script em um diretório contendo arquivos MP4
 2. Torne-o executável:
    ```bash
-   chmod +x encoder-mp4-hevc.zsh
+   chmod +x mp4-optimizer.zsh
    ```
 3. Execute o conversor:
    ```bash
-   ./encoder-mp4-hevc.zsh
+   ./mp4-optimizer.zsh
    ```
 
 ### ⚙️ Configuração
@@ -191,6 +192,7 @@ Edite as variáveis de configuração no topo do script:
 |----------|---------|-----------|
 | `QUALITY_CRF` | 20 | Qualidade do vídeo (18-28, menor = melhor qualidade) |
 | `PRESET` | "medium" | Preset de velocidade de codificação |
+| `THREADS` | 0 | Número de threads (0 = auto-detectar) |
 | `CPU_LIMIT` | 70 | Percentual máximo de uso de CPU |
 | `THERMAL_PAUSE` | 60 | Segundos de pausa entre conversões |
 | `USE_CPULIMIT` | true | Habilitar controle preciso de CPU |
@@ -210,12 +212,12 @@ Edite as variáveis de configuração no topo do script:
 
 ```
 seu-diretorio/
-├── encoder-mp4-hevc.zsh          # Script principal
+├── mp4-optimizer.zsh             # Script principal
 ├── video1.mp4                    # Arquivo original
-├── video1_ffmpeg.mp4             # Arquivo HEVC convertido
+├── video1_optimized.mp4          # Arquivo HEVC convertido
 ├── video2.mp4                    # Outro arquivo original
-├── video2_ffmpeg.mp4             # Outro arquivo convertido
-└── encoder-mp4-hevc_logs/        # Diretório de logs de erro
+├── video2_optimized.mp4          # Outro arquivo convertido
+└── mp4-optimizer-logs/           # Diretório de logs de erro
     ├── video1_error.log          # Logs de erro individuais
     └── video2_error.log
 ```
@@ -233,7 +235,7 @@ sudo apt install ffmpeg  # Ubuntu/Debian
 
 **Permissão negada**
 ```bash
-chmod +x encoder-mp4-hevc.zsh
+chmod +x mp4-optimizer.zsh
 ```
 
 **Alto uso de CPU**
