@@ -270,10 +270,9 @@ show_header() {
     echo "${BOLD}${BLUE}┃${NC}         ${BOLD}${RED}|_|  |_|_|   |_|   \___/| .__/\__|_|_|_|_|_/__\___|_|  ${NC}"
     echo "${BOLD}${BLUE}┃${NC}         ${BOLD}${RED}                        |_|                 by Andalik ${NC}"
     echo "${BOLD}${BLUE}┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩${NC}"
-    echo "${BOLD}${BLUE}│${NC} ${WHITE}🔄 Converts MP4 videos to HEVC format for smaller file sizes${NC}"
-    echo "${BOLD}${BLUE}│${NC} ${WHITE}    while preserving video quality.${NC}"
-    echo "${BOLD}${BLUE}│${NC} ${WHITE}   Preserves audio quality and ensures Apple device compatibility${NC}"
-    echo "${BOLD}${BLUE}│${NC} ${WHITE}    with optimized streaming support.${NC}"
+    echo "${BOLD}${BLUE}│${NC} ${WHITE}🔄 Batch converts MP4 files to HEVC/H.265 format w/ optimal compression${NC}"
+    echo "${BOLD}${BLUE}│${NC} ${WHITE}   Advanced video encoding with Apple device compatibility (hvc1 tag)${NC}"
+    echo "${BOLD}${BLUE}│${NC} ${WHITE}   Streaming-optimized output with faststart metadata positioning${NC}"
     echo "${BOLD}${BLUE}│${NC} ${NC}"
     echo "${BOLD}${BLUE}│${NC} ${YELLOW}⚙️ Settings:${NC}"
     echo "${BOLD}${BLUE}│${NC}    ${WHITE}•${NC} Quality (CRF): ${GREEN}$QUALITY_CRF${NC}"
@@ -872,14 +871,12 @@ execute_ffmpeg_conversion() {
     if [[ "$USE_CPULIMIT" == "true" ]] && command -v cpulimit >/dev/null 2>&1; then
         # Use cpulimit for precise CPU control
         local cpulimit_cmd=("cpulimit" "-l" "$CPU_LIMIT" "--")
-        "${cpulimit_cmd[@]}" "${ffmpeg_cmd[@]}" 2>&1 | \
-        grep --line-buffered -E "(^x265|^frame=)" | tee -a "$error_log"
-        return ${PIPESTATUS[1]}
+        "${cpulimit_cmd[@]}" "${ffmpeg_cmd[@]}" 2> >(tee -a "$error_log" >&2)
+        return $?
     else
         # Execute normal conversion with limited threads
-        "${ffmpeg_cmd[@]}" 2>&1 | \
-        grep --line-buffered -E "(^x265|^frame=)" | tee -a "$error_log"
-        return ${PIPESTATUS[1]}
+        "${ffmpeg_cmd[@]}" 2> >(tee -a "$error_log" >&2)
+        return $?
     fi
 }
 
