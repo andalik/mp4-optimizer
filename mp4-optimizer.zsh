@@ -57,7 +57,7 @@ failed_files=0
 
 
 # Log de erro para arquivos processados
-ERROR_LOG_DIR="./encoder-mp4-hevc_logs"
+ERROR_LOG_DIR="./mp4-optimizer-logs"
 mkdir -p "$ERROR_LOG_DIR"
 
 # Função de limpeza para sinais
