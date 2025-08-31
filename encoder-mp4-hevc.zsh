@@ -5,7 +5,7 @@ QUALITY_CRF=20                           # Qualidade (18-28, menor = melhor qual
 PRESET="medium"                          # Preset de velocidade: ultrafast, superfast, veryfast, faster, fast, medium, slow, slower, veryslow
 THREADS=0                                # 0 = auto-detectar número de threads
 CPU_LIMIT=70                             # Percentual máximo de CPU a utilizar (10-100)
-THERMAL_PAUSE=30                         # Pausa em segundos entre conversões (0 = desabilitado)
+THERMAL_PAUSE=60                         # Pausa em segundos entre conversões (0 = desabilitado)
 USE_CPULIMIT=true                        # Usar cpulimit para controle preciso de CPU (true/false)
 ADAPTIVE_PRESET=false                    # Ajustar preset baseado na carga do sistema (true/false)
 
@@ -249,11 +249,11 @@ fi
 show_header() {
     clear
     echo "${BOLD}${BLUE}┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
-    echo "${BOLD}${BLUE}┃${NC}                       ${BOLD}${MAGENTA}🎥 HEVC BATCH CONVERTER${NC}         "
-    echo "${BOLD}${BLUE}┃${NC}                     ${CYAN}Encoder de MP4 para HEVC/H.265${NC}              "
+    echo "${BOLD}${BLUE}┃${NC}                        ${BOLD}${MAGENTA}🎥 MP4 Optimizer${NC}                 "
+    echo "${BOLD}${BLUE}┃${NC}                     ${CYAN}Otimizador de MP4 para HEVC/H.265${NC}           "
     echo "${BOLD}${BLUE}┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩${NC}"
-    echo "${BOLD}${BLUE}│${NC} ${WHITE}🔄 Recodifica vídeos MP4 para HEVC/H.265 (libx265), reduzindo tamanho e${NC}"
-    echo "${BOLD}${BLUE}│${NC} ${WHITE}    mantendo qualidade.${NC}"
+    echo "${BOLD}${BLUE}│${NC} ${WHITE}🔄 Recodifica vídeos MP4 para HEVC/H.265 (libx265), reduzindo o tamanho${NC}"
+    echo "${BOLD}${BLUE}│${NC} ${WHITE}    e mantendo a qualidade.${NC}"
     echo "${BOLD}${BLUE}│${NC} ${WHITE}   Preserva o áudio original, assegura compatibilidade com dispositivos${NC}"
     echo "${BOLD}${BLUE}│${NC} ${WHITE}    Apple e otimiza o arquivo para streaming rápido.${NC}"
     echo "${BOLD}${BLUE}│${NC} ${NC}"
