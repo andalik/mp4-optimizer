@@ -92,11 +92,11 @@ Edit the configuration variables at the top of the script:
 
 ```
 your-directory/
-├── mp4-optimizer.zsh              # Main script
+├── mp4-optimizer.zsh             # Main script
 ├── video1.mp4                    # Original file
-├── video1_ffmpeg.mp4             # Converted HEVC file
+├── video1_optimized.mp4          # Converted HEVC file
 ├── video2.mp4                    # Another original
-├── video2_ffmpeg.mp4             # Another converted file
+├── video2_optimized.mp4          # Another converted file
 └── mp4-optimizer-logs/           # Error logs directory
     ├── video1_error.log          # Individual error logs
     └── video2_error.log
@@ -212,11 +212,11 @@ Edite as variáveis de configuração no topo do script:
 
 ```
 seu-diretorio/
-├── mp4-optimizer.zsh              # Script principal
+├── mp4-optimizer.zsh             # Script principal
 ├── video1.mp4                    # Arquivo original
-├── video1_ffmpeg.mp4             # Arquivo HEVC convertido
+├── video1_optimized.mp4          # Arquivo HEVC convertido
 ├── video2.mp4                    # Outro arquivo original
-├── video2_ffmpeg.mp4             # Outro arquivo convertido
+├── video2_optimized.mp4          # Outro arquivo convertido
 └── mp4-optimizer-logs/           # Diretório de logs de erro
     ├── video1_error.log          # Logs de erro individuais
     └── video2_error.log

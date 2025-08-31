@@ -221,7 +221,7 @@ validate_config() {
     # Check if there are MP4 files to process
     local mp4_count=0
     while IFS= read -r -d '' file; do
-        if [[ "$file" != *"_ffmpeg.mp4" ]]; then
+        if [[ "$file" != *"_optimized.mp4" ]]; then
             ((mp4_count++))
             break  # We only need to know if there's at least one
         fi
@@ -275,14 +275,14 @@ show_header() {
     echo "${BOLD}${BLUE}│${NC} ${WHITE}   Preserves audio quality and ensures Apple device compatibility${NC}"
     echo "${BOLD}${BLUE}│${NC} ${WHITE}    with optimized streaming support.${NC}"
     echo "${BOLD}${BLUE}│${NC} ${NC}"
-    echo "${BOLD}${BLUE}│${NC} ${YELLOW}⚙️  Settings:${NC}"
-    echo "${BOLD}${BLUE}│${NC}     ${WHITE}•${NC} Quality (CRF): ${GREEN}$QUALITY_CRF${NC}"
-    echo "${BOLD}${BLUE}│${NC}     ${WHITE}•${NC} Preset: ${GREEN}$PRESET${NC}"
-    echo "${BOLD}${BLUE}│${NC}     ${WHITE}•${NC} Threads: ${GREEN}$THREADS${NC}"
-    echo "${BOLD}${BLUE}│${NC}     ${WHITE}•${NC} CPU Limit: ${GREEN}${CPU_LIMIT}%${NC}"
-    echo "${BOLD}${BLUE}│${NC}     ${WHITE}•${NC} Thermal Pause: ${GREEN}${THERMAL_PAUSE}s${NC}"
+    echo "${BOLD}${BLUE}│${NC} ${YELLOW}⚙️ Settings:${NC}"
+    echo "${BOLD}${BLUE}│${NC}    ${WHITE}•${NC} Quality (CRF): ${GREEN}$QUALITY_CRF${NC}"
+    echo "${BOLD}${BLUE}│${NC}    ${WHITE}•${NC} Preset: ${GREEN}$PRESET${NC}"
+    echo "${BOLD}${BLUE}│${NC}    ${WHITE}•${NC} Threads: ${GREEN}$THREADS${NC}"
+    echo "${BOLD}${BLUE}│${NC}    ${WHITE}•${NC} CPU Limit: ${GREEN}${CPU_LIMIT}%${NC}"
+    echo "${BOLD}${BLUE}│${NC}    ${WHITE}•${NC} Thermal Pause: ${GREEN}${THERMAL_PAUSE}s${NC}"
     if [[ "$USE_CPULIMIT" == "true" ]] && command -v cpulimit >/dev/null 2>&1; then
-        echo "${BOLD}${BLUE}│${NC}     ${WHITE}•${NC} CPU Control: ${GREEN}cpulimit active${NC}"
+        echo "${BOLD}${BLUE}│${NC}    ${WHITE}•${NC} CPU Control: ${GREEN}cpulimit active${NC}"
     fi
     echo "${BOLD}${BLUE}└─────────────────────────────────────────────────────────────────────────┘${NC}"
     echo ""
@@ -293,7 +293,7 @@ show_header
 
 # Function to ask user for sorting order
 ask_sort_order() {
-    echo "${BOLD}${CYAN}🔤 Sort files by:${NC}" >&2
+    echo "${BOLD}${CYAN}🔤 Sort files for processing by:${NC}" >&2
     echo "   ${WHITE}1)${NC} Alphabetical ascending ${DIM}(0-9, A-Z)${NC}" >&2
     echo "   ${WHITE}2)${NC} Alphabetical descending ${DIM}(Z-A, 9-0)${NC}" >&2
     echo "   ${WHITE}3)${NC} Size ascending ${DIM}(smaller → larger)${NC}" >&2
@@ -329,7 +329,7 @@ discover_mp4_files() {
     
     # Find all MP4 files, excluding already converted ones
     while IFS= read -r -d '' file; do
-        if [[ "$file" != *"_ffmpeg.mp4" ]]; then
+        if [[ "$file" != *"_optimized.mp4" ]]; then
             mp4_files+=("$file")
             ((processable_count++))
         fi
@@ -341,7 +341,7 @@ discover_mp4_files() {
     if [[ ${#mp4_files[@]} -eq 0 ]]; then
         echo ""
         echo "${BOLD}${YELLOW}⚠️ WARNING:${NC} ${YELLOW}No MP4 files found for conversion.${NC}"
-        echo "${DIM}(Files with _ffmpeg.mp4 suffix are ignored as they were already converted)${NC}"
+        echo "${DIM}(Files with _optimized.mp4 suffix are ignored as they were already converted)${NC}"
         echo ""
         total_processable=0
         # Create secure temporary file
@@ -744,7 +744,7 @@ process_single_file() {
         echo "   ${BOLD}${RED}❌ ${RED}Failed to process filename: $file${NC}" >&2
         return 1
     fi
-    local output="${dir}/${basename}_ffmpeg.mp4"
+    local output="${dir}/${basename}_optimized.mp4"
     current_output="$output"  # For cleanup in case of interruption
     
     # Specific error log file for this file (sanitize basename)
@@ -757,6 +757,7 @@ process_single_file() {
     # Check if already exists
     if [[ -f "$output" ]]; then
         echo "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+        echo ""
         echo "${BOLD}${YELLOW}⏭️ Skipping ${WHITE}$basename${NC} ${DIM}(already converted)${NC}"
         draw_progress_bar $current_file_num $total_files
         ((skipped_files++))
@@ -764,6 +765,7 @@ process_single_file() {
     fi
 
     echo "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo ""
     echo "${BOLD}${GREEN}🎥 Converting ${WHITE}$basename${NC}"
     draw_progress_bar $current_file_num $total_files
     
@@ -775,13 +777,13 @@ process_single_file() {
         if should_skip_conversion; then
             echo "${BOLD}${YELLOW}⚠️  This file may not benefit from conversion, but proceeding anyway.${NC}"
             echo "${BOLD}${GREEN}▶️  Continuing with conversion...${NC}"
+            echo ""
         fi
-        echo ""
     else
         echo "${BOLD}${YELLOW}⚠️ ${YELLOW}Could not analyze file properties - proceeding with conversion${NC}"
         echo ""
     fi
-    
+
     # Get adaptive preset
     local current_preset=$(get_adaptive_preset)
     if [[ "$current_preset" != "$PRESET" ]]; then
@@ -865,6 +867,7 @@ execute_ffmpeg_conversion() {
         "$output_file"
     )
 
+    echo ""
     echo "${BOLD}${CYAN}⚙️ Encoding...${NC}"
     if [[ "$USE_CPULIMIT" == "true" ]] && command -v cpulimit >/dev/null 2>&1; then
         # Use cpulimit for precise CPU control
@@ -1032,7 +1035,7 @@ echo ""
 
 # Final message based on result
 if [[ $converted_files -gt 0 ]]; then
-    echo "${BOLD}${GREEN}🎉 Conversion complete! Converted files saved with '_ffmpeg.mp4' suffix${NC}"
+    echo "${BOLD}${GREEN}🎉 Conversion complete! Converted files saved with '_optimized.mp4' suffix${NC}"
 elif [[ $skipped_files -gt 0 ]]; then
     echo "${BOLD}${YELLOW}📝 All files were already converted${NC}"
 else
