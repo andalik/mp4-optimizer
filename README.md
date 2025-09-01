@@ -16,6 +16,8 @@
 
 A sophisticated ZSH script for batch converting MP4 files to HEVC/H.265 format with optimal compression, thermal management, and comprehensive progress tracking. Videos are optimized for maximum Apple device compatibility and streaming performance.
 
+![MP4 Optimizer 2](assets/img/mp4-optimizer-screenshot-2.png)
+
 ### ✨ Features
 
 - **Efficient HEVC Encoding**: Converts MP4 files to HEVC/H.265 using FFmpeg with libx265
@@ -28,6 +30,8 @@ A sophisticated ZSH script for batch converting MP4 files to HEVC/H.265 format w
 - **Error Handling**: Comprehensive logging and automatic cleanup on interruption
 - **File Management**: Smart detection of already converted files to avoid duplicates
 - **Flexible Sorting**: Multiple sorting options (alphabetical, file size)
+
+![MP4 Optimizer 2](assets/img/mp4-optimizer-screenshot-2.png)
 
 ### 🚀 Quick Start
 
@@ -136,6 +140,8 @@ chmod +x mp4-optimizer.zsh
 
 Um script ZSH sofisticado para conversão em lote de arquivos MP4 para formato HEVC/H.265 com compressão otimizada, gerenciamento térmico e rastreamento abrangente de progresso. Os vídeos são otimizados para máxima compatibilidade com dispositivos Apple e performance de streaming.
 
+![MP4 Optimizer 1](assets/img/mp4-optimizer-screenshot-1.png)
+
 ### ✨ Funcionalidades
 
 - **Codificação HEVC Eficiente**: Converte arquivos MP4 para HEVC/H.265 usando FFmpeg com libx265
@@ -148,6 +154,8 @@ Um script ZSH sofisticado para conversão em lote de arquivos MP4 para formato H
 - **Tratamento de Erros**: Logging abrangente e limpeza automática em caso de interrupção
 - **Gerenciamento de Arquivos**: Detecção inteligente de arquivos já convertidos para evitar duplicatas
 - **Ordenação Flexível**: Múltiplas opções de ordenação (alfabética, tamanho do arquivo)
+
+![MP4 Optimizer 2](assets/img/mp4-optimizer-screenshot-2.png)
 
 ### 🚀 Início Rápido
 
