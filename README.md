@@ -16,7 +16,7 @@
 
 A sophisticated ZSH script for batch converting MP4 files to HEVC/H.265 format with optimal compression, thermal management, and comprehensive progress tracking. Videos are optimized for maximum Apple device compatibility and streaming performance.
 
-![MP4 Optimizer 2](assets/img/mp4-optimizer-screenshot-2.png)
+![MP4 Optimizer 1](assets/img/mp4-optimizer-screenshot-1.png)
 
 ### ✨ Features
 
